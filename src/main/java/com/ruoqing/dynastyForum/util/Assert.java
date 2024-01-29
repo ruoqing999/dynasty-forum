@@ -1,4 +1,4 @@
-package com.ruoqing.dynastyForum.common;
+package com.ruoqing.dynastyForum.util;
 
 
 import com.ruoqing.dynastyForum.handler.ServiceException;
