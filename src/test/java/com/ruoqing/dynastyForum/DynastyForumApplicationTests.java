@@ -42,15 +42,14 @@ class DynastyForumApplicationTests {
                         .pathInfo(Collections.singletonMap(
                                 OutputFile.xml,
                                 PATH + SEPARATOR + "resources" + SEPARATOR + "mapper")))
-                .strategyConfig(builder -> builder.addInclude("dy_category").addTablePrefix("dy")
+                .strategyConfig(builder -> builder.addInclude("dy_third_oauth").addTablePrefix("dy")
                         .entityBuilder()
                         .superClass(BaseEntity.class)
                         .addIgnoreColumns("create_time", "update_time", "status")
                         .enableTableFieldAnnotation()
                         .enableLombok()
                         .idType(IdType.ASSIGN_ID)
-                        .controllerBuilder()
-                        .enableRestStyle())
+                        )
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                 .execute();
     }

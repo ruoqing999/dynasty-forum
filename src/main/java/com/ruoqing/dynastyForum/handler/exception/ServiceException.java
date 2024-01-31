@@ -1,4 +1,4 @@
-package com.ruoqing.dynastyForum.handler;
+package com.ruoqing.dynastyForum.handler.exception;
 
 public class ServiceException extends RuntimeException{
 

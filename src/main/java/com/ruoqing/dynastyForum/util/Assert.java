@@ -1,7 +1,7 @@
 package com.ruoqing.dynastyForum.util;
 
 
-import com.ruoqing.dynastyForum.handler.ServiceException;
+import com.ruoqing.dynastyForum.handler.exception.ServiceException;
 
 public class Assert {
 

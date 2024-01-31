@@ -44,8 +44,8 @@ public class Result<T> {
         return new Result<>(code, msg);
     }
 
-    public static <T> Result<T> error(int code, String msg,T data) {
-        return new Result<>(code, msg,data);
+    public static <T> Result<T> error(int code, String msg, T data) {
+        return new Result<>(code, msg, data);
     }
 
 }
