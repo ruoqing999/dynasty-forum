@@ -1,6 +1,9 @@
 package com.ruoqing.dynastyForum.service.impl;
 
 import cn.hutool.crypto.digest.DigestUtil;
+import com.ruoqing.dynastyForum.common.UserContext;
+import com.ruoqing.dynastyForum.component.RedisService;
+import com.ruoqing.dynastyForum.constant.RedisConstant;
 import com.ruoqing.dynastyForum.constant.ResultConstant;
 import com.ruoqing.dynastyForum.entity.LocalAuth;
 import com.ruoqing.dynastyForum.entity.User;
@@ -32,6 +35,9 @@ public class LocalAuthServiceImpl extends ServiceImpl<LocalAuthMapper, LocalAuth
     @Resource
     private IUserService userService;
 
+    @Resource
+    private RedisService redisService;
+
     @Override
     public User login(LoginRO loginRO) {
         var account = loginRO.getAccount();
@@ -56,6 +62,12 @@ public class LocalAuthServiceImpl extends ServiceImpl<LocalAuthMapper, LocalAuth
 
         var password = registerRO.getPassword();
         return registerUser(registerUser.getUserId(), account, password);
+    }
+
+    @Override
+    public boolean logout() {
+        User user = UserContext.get();
+        return redisService.del(RedisConstant.LOGIN_USER_KEY + user.getUserKey());
     }
 
     @Override

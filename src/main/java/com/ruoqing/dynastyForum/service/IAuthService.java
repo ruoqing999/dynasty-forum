@@ -9,4 +9,6 @@ public interface IAuthService {
 
     boolean register(RegisterRO registerRO);
 
+    boolean logout();
+
 }

@@ -10,10 +10,7 @@ import com.ruoqing.dynastyForum.ro.RegisterRO;
 import com.ruoqing.dynastyForum.service.IAuthService;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -37,6 +34,11 @@ public class AuthController {
     @PostMapping("/register")
     public Result<Boolean> register(@RequestBody @Valid RegisterRO registerRO){
         return Result.ok(authService.register(registerRO));
+    }
+
+    @GetMapping("/logout")
+    public Result<Boolean> logout(){
+        return Result.ok(authService.logout());
     }
 
 }

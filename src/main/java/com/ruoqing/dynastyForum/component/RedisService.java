@@ -20,4 +20,8 @@ public class RedisService {
         return stringRedisTemplate.opsForValue().get(key);
     }
 
+    public boolean del(String key) {
+        return Boolean.TRUE.equals(stringRedisTemplate.delete(key));
+    }
+
 }

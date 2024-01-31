@@ -42,7 +42,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         String userKey = JWTUtil.getUserKey(token);
         String userStr = redisService.get(RedisConstant.LOGIN_USER_KEY + userKey);
         if (ObjectUtils.isEmpty(userStr)) throw new AuthorizationException(ResultConstant.AUTHORIZATION_ERROR.getMessage());
-        UserContext.set(JSONUtil.toBean(userStr, User.class));
+        User user = JSONUtil.toBean(userStr, User.class);
+        user.setUserKey(userKey);
+        UserContext.set(user);
         return true;
     }
 
