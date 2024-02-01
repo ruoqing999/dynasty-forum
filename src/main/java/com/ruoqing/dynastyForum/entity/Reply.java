@@ -5,13 +5,12 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.ruoqing.dynastyForum.common.BaseEntity;
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author java
@@ -32,6 +31,9 @@ public class Reply extends BaseEntity {
 
     @TableField("user_id")
     private Integer userId;
+
+    @TableField("reply_user_id")
+    private Integer replyUserId;
 
     @TableField("content")
     private String content;

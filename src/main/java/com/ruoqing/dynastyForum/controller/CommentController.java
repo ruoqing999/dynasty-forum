@@ -1,7 +1,11 @@
 package com.ruoqing.dynastyForum.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.ruoqing.dynastyForum.common.Result;
+import com.ruoqing.dynastyForum.ro.CommentRO;
+import com.ruoqing.dynastyForum.service.ICommentService;
+import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -14,5 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
+
+    @Resource
+    private ICommentService commentService;
+
+    @PostMapping
+    public Result<Void> comment(@RequestBody @Valid CommentRO ro){
+        commentService.comment(ro);
+        return Result.ok();
+    }
+
+    @DeleteMapping
+    public Result<Void> del(@RequestParam Integer commentId){
+        commentService.del(commentId);
+        return Result.ok();
+    }
 
 }
