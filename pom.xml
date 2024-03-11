@@ -20,6 +20,8 @@
         <hutool.version>5.8.25</hutool.version>
         <jjwt.version>0.9.1</jjwt.version>
         <javax-jaxb.version>2.4.0-b180830.0359</javax-jaxb.version>
+        <open-feign.version>4.0.4</open-feign.version>
+        <pagehelper.boot.version>1.4.7</pagehelper.boot.version>
     </properties>
     <dependencies>
 
@@ -53,6 +55,24 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>${open-feign.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper.boot.version}</version>
         </dependency>
 
         <dependency>
@@ -94,6 +114,13 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
+        </dependency>
+
+        <!--QQSDK-->
+        <dependency>
+            <groupId>net.gplatform</groupId>
+            <artifactId>Sdk4J</artifactId>
+            <version>2.0</version>
         </dependency>
     </dependencies>
 

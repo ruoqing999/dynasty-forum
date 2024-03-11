@@ -2,6 +2,11 @@ package com.ruoqing.dynastyForum.mapper;
 
 import com.ruoqing.dynastyForum.entity.Post;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ruoqing.dynastyForum.qo.PostQO;
+import com.ruoqing.dynastyForum.vo.PostVO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +17,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2024-01-29
  */
 public interface PostMapper extends BaseMapper<Post> {
+
+    List<PostVO> pagePost(@Param("qo") PostQO qo);
 
 }

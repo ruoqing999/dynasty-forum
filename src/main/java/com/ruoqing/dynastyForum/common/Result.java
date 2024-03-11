@@ -15,6 +15,7 @@ public class Result<T> {
     private Result(T data) {
         this.code = HttpStatus.HTTP_OK;
         this.data = data;
+        this.msg = "success";
     }
 
     private Result() {

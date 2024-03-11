@@ -1,9 +1,14 @@
 package com.ruoqing.dynastyForum.service;
 
+import com.github.pagehelper.PageInfo;
 import com.ruoqing.dynastyForum.entity.Post;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ruoqing.dynastyForum.qo.PostQO;
 import com.ruoqing.dynastyForum.ro.PostRO;
 import com.ruoqing.dynastyForum.vo.PostDetailVO;
+import com.ruoqing.dynastyForum.vo.PostVO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -21,4 +26,5 @@ public interface IPostService extends IService<Post> {
 
     PostDetailVO detail(Integer postId);
 
+    PageInfo<PostVO> pagePost(PostQO qo);
 }

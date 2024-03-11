@@ -17,3 +17,8 @@ mybatis-plus:
       logic-delete-field: status # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台打印sql
+qq:
+  oauth:
+    backUrl: https://www.xhygrmyc.cn/qq #回调，要和你申请的那个回调一致
+    appId: 1018***
+    appKey: 2785eecad5f***

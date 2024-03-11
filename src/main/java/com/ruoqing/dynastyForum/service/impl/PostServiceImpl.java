@@ -1,15 +1,22 @@
 package com.ruoqing.dynastyForum.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ruoqing.dynastyForum.common.UserContext;
 import com.ruoqing.dynastyForum.constant.Whether;
 import com.ruoqing.dynastyForum.entity.Post;
 import com.ruoqing.dynastyForum.mapper.PostMapper;
+import com.ruoqing.dynastyForum.qo.PostQO;
 import com.ruoqing.dynastyForum.ro.PostRO;
 import com.ruoqing.dynastyForum.service.IPostService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoqing.dynastyForum.vo.PostDetailVO;
+import com.ruoqing.dynastyForum.vo.PostVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -47,6 +54,13 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     public PostDetailVO detail(Integer postId) {
 
         return null;
+    }
+
+    @Override
+    public PageInfo<PostVO> pagePost(PostQO qo) {
+        PageHelper.startPage(qo.getPageNum(), qo.getPageSize());
+        List<PostVO> postVOS = baseMapper.pagePost(qo);
+        return new PageInfo<>(postVOS);
     }
 
 }

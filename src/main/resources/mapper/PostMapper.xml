@@ -2,4 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoqing.dynastyForum.mapper.PostMapper">
 
+    <select id="pagePost" resultType="com.ruoqing.dynastyForum.vo.PostVO">
+        select dy.post_id, dy.post_title, dy.post_content, dy.user_id, dy.create_time, dy.category_id,
+               du.nick_name, dc.category_name
+        from dy_post dy
+        left join dy_user du on du.user_id = dy.user_id
+        left join dy_category dc on dc.category_id = dy.category_id
+        <where>
+            dy.status = 0
+            <if test="qo.categoryId != null">
+                and dy.category_id = #{qo.categoryId}
+            </if>
+            <if test="qo.postTitle != null and qo.postTitle != ''">
+                and dy.post_title like concat('%', #{qo.postTitle}, '%')
+            </if>
+        </where>
+        order by dy.create_time desc
+    </select>
+
 </mapper>

@@ -1,12 +1,17 @@
 package com.ruoqing.dynastyForum.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.ruoqing.dynastyForum.annotation.IgnoreAuth;
 import com.ruoqing.dynastyForum.common.Result;
+import com.ruoqing.dynastyForum.qo.PostQO;
 import com.ruoqing.dynastyForum.ro.PostRO;
 import com.ruoqing.dynastyForum.service.IPostService;
 import com.ruoqing.dynastyForum.vo.PostDetailVO;
+import com.ruoqing.dynastyForum.vo.PostVO;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+
 
 /**
  * <p>
@@ -22,6 +27,12 @@ public class PostController {
 
     @Resource
     private IPostService postService;
+
+    @IgnoreAuth
+    @GetMapping("/pagePost")
+    public Result<PageInfo<PostVO>> pagePost(PostQO qo){
+        return Result.ok(postService.pagePost(qo));
+    }
 
     @PostMapping
     public Result<Void> post(@RequestBody @Valid PostRO postRO){

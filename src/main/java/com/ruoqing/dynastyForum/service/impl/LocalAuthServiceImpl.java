@@ -10,7 +10,6 @@ import com.ruoqing.dynastyForum.entity.User;
 import com.ruoqing.dynastyForum.mapper.LocalAuthMapper;
 import com.ruoqing.dynastyForum.ro.LoginRO;
 import com.ruoqing.dynastyForum.ro.RegisterRO;
-import com.ruoqing.dynastyForum.service.IAuthService;
 import com.ruoqing.dynastyForum.service.ILocalAuthService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoqing.dynastyForum.service.IUserService;
@@ -19,6 +18,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
 
 
 /**
@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  * @since 2024-01-29
  */
 @Service
-public class LocalAuthServiceImpl extends ServiceImpl<LocalAuthMapper, LocalAuth> implements ILocalAuthService, IAuthService {
+public class LocalAuthServiceImpl extends ServiceImpl<LocalAuthMapper, LocalAuth> implements ILocalAuthService {
 
     @Resource
     private IUserService userService;

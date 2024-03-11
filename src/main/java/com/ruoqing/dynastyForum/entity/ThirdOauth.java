@@ -11,7 +11,7 @@ import lombok.Setter;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author java
@@ -34,5 +34,5 @@ public class ThirdOauth extends BaseEntity {
     private Integer oauthType;
 
     @TableField("oauth_id")
-    private Integer oauthId;
+    private String oauthId;
 }

@@ -1,5 +1,6 @@
 package com.ruoqing.dynastyForum.controller;
 
+import com.ruoqing.dynastyForum.annotation.IgnoreAuth;
 import com.ruoqing.dynastyForum.common.Result;
 import com.ruoqing.dynastyForum.entity.Category;
 import com.ruoqing.dynastyForum.service.ICategoryService;
@@ -25,6 +26,7 @@ public class CategoryController {
     @Resource
     private ICategoryService categoryService;
 
+    @IgnoreAuth
     @GetMapping("/list")
     public Result<List<Category>> list(){
         return Result.ok(categoryService.list());
