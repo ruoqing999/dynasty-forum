@@ -9,6 +9,8 @@ import com.ruoqing.dynastyForum.ro.LoginRO;
 import com.ruoqing.dynastyForum.ro.RegisterRO;
 import com.ruoqing.dynastyForum.service.ILocalAuthService;
 import com.ruoqing.dynastyForum.service.IThirdOauthService;
+import com.ruoqing.dynastyForum.vo.QQUserInfO;
+import com.ruoqing.dynastyForum.vo.UserInfoVO;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -35,15 +37,16 @@ public class AuthController {
     @IgnoreAuth
     @GetMapping("/qqLogin")
     public Result<String> qqLogin(@RequestParam String code, @RequestParam String state) {
-        thirdOauthService.qqLogin(code, state);
-        return Result.ok();
+        UserInfoVO userInfoVO = thirdOauthService.qqLogin(code, state);
+        return Result.ok(tokenService.createToken(userInfoVO));
     }
 
     @IgnoreAuth
     @PostMapping("/login")
+    @Deprecated
     public Result<String> login(@RequestBody @Valid LoginRO loginRO) {
         User loginUser = localAuthService.login(loginRO);
-        return Result.ok(tokenService.createToken(loginUser));
+        return Result.ok();
     }
 
     @IgnoreAuth

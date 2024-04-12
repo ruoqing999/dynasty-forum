@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.ruoqing.dynastyForum.common.BaseEntity;
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,9 +25,6 @@ public class ThirdOauth extends BaseEntity {
 
     @TableId(value = "third_oauth_id", type = IdType.ASSIGN_ID)
     private Integer thirdOauthId;
-
-    @TableField("user_id")
-    private Integer userId;
 
     @TableField("oauth_type")
     private Integer oauthType;

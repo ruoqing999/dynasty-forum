@@ -5,6 +5,7 @@ import cn.hutool.json.JSONUtil;
 import com.ruoqing.dynastyForum.constant.RedisConstant;
 import com.ruoqing.dynastyForum.entity.User;
 import com.ruoqing.dynastyForum.util.JWTUtil;
+import com.ruoqing.dynastyForum.vo.UserInfoVO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
@@ -21,16 +22,16 @@ public class TokenService {
     @Resource
     private RedisService redisService;
 
-    public String createToken(User user) {
+    public String createToken(UserInfoVO userInfo) {
         String uuid = UUID.fastUUID().toString();
-        refreshToken(uuid, user);
+        refreshToken(uuid, userInfo);
         Map<String, Object> claimsMap = new HashMap<>();
         claimsMap.put(JWTUtil.USER_KEY, uuid);
         return JWTUtil.createToken(claimsMap);
     }
 
-    private void refreshToken(String uuid, User user) {
-        redisService.set(getTokenKey(uuid), JSONUtil.toJsonStr(user), expireTime, TimeUnit.MINUTES);
+    private void refreshToken(String uuid, UserInfoVO userInfo) {
+        redisService.set(getTokenKey(uuid), JSONUtil.toJsonStr(userInfo), expireTime, TimeUnit.MINUTES);
     }
 
     private String getTokenKey(String uuid) {
