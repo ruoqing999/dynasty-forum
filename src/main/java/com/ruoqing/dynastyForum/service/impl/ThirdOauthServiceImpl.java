@@ -64,20 +64,24 @@ public class ThirdOauthServiceImpl extends ServiceImpl<ThirdOauthMapper, ThirdOa
         QQAccessToken accessToken = qqApi.getAccessToken(GRANT_TYPE, qqComponent.getAppId(), qqComponent.getAppKey(),
                 code, qqComponent.getBackUrl(), FMT, 1);
         String openId = accessToken.getOpenId();
+        QQUserInfO userInfo = qqApi.getUserInfo(accessToken.getAccess_token(), qqComponent.getAppId(), openId);
+        Assert.isTrue(userInfo.getRet() != NORMAL_RET, "QQ-获取用户信息失败");
+
         ThirdOauth thirdOauth = lambdaQuery().eq(ThirdOauth::getOauthId, openId).one();
         if (null == thirdOauth) {
             ThirdOauth save = new ThirdOauth();
             save.setOauthId(openId);
             save.setOauthType(OauthEnum.QQ.getCode());
             thirdOauthService.save(save);
+            thirdOauth = save;
         }
-        QQUserInfO userInfo = qqApi.getUserInfo(accessToken.getAccess_token(), qqComponent.getAppId(), openId);
-        Assert.isTrue(userInfo.getRet() != NORMAL_RET, "QQ-获取用户信息失败");
+
         UserInfoVO userInfoVO = new UserInfoVO();
         BeanUtils.copyProperties(userInfo, userInfoVO);
         userInfoVO.setAvatarUrl(userInfo.getFigureurl_qq_1());
         userInfoVO.setOpenId(openId);
         userInfoVO.setOauthType(OauthEnum.QQ.getCode());
+        userInfoVO.setThirdOauthId(thirdOauth.getThirdOauthId());
         return userInfoVO;
     }
 }

@@ -14,6 +14,7 @@ import com.ruoqing.dynastyForum.service.ILocalAuthService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoqing.dynastyForum.service.IUserService;
 import com.ruoqing.dynastyForum.util.Assert;
+import com.ruoqing.dynastyForum.vo.UserInfoVO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,8 +67,8 @@ public class LocalAuthServiceImpl extends ServiceImpl<LocalAuthMapper, LocalAuth
 
     @Override
     public boolean logout() {
-        User user = UserContext.get();
-        return redisService.del(RedisConstant.LOGIN_USER_KEY + user.getUserKey());
+        UserInfoVO userInfoVO = UserContext.get();
+        return redisService.del(RedisConstant.LOGIN_USER_KEY + userInfoVO.getUserKey());
     }
 
     @Override

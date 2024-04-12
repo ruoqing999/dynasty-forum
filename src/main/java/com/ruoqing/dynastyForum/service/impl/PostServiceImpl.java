@@ -39,7 +39,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
             updateById(post);
             return;
         }
-        post.setUserId(UserContext.get().getUserId());
+        post.setUserId(UserContext.get().getThirdOauthId());
         save(post);
     }
 

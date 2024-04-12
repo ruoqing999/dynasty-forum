@@ -23,7 +23,7 @@ public class ThirdOauth extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "third_oauth_id", type = IdType.ASSIGN_ID)
+    @TableId(value = "third_oauth_id", type = IdType.AUTO)
     private Integer thirdOauthId;
 
     @TableField("oauth_type")

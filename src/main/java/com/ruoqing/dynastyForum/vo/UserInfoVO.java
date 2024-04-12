@@ -15,4 +15,6 @@ public class UserInfoVO {
 
     private Integer oauthType;
 
+    private Integer thirdOauthId;
+
 }
