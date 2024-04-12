@@ -1,4 +1,4 @@
-package com.ruoqing.dynastyForum.util;
+package com.ruoqing.dynastyForum.xunfei;
 
 import cn.hutool.core.codec.Base64;
 import lombok.extern.slf4j.Slf4j;

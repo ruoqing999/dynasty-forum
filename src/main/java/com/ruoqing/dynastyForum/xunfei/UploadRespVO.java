@@ -1,4 +1,4 @@
-package com.ruoqing.dynastyForum.vo.xunfei;
+package com.ruoqing.dynastyForum.xunfei;
 
 import lombok.Data;
 
