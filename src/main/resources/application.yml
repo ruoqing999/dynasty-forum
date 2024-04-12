@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 9999
 spring:
   datasource:
     url: jdbc:mysql://192.168.56.10:3306/dynasty_forum
@@ -19,6 +19,11 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台打印sql
 qq:
   oauth:
-    backUrl: https://www.xhygrmyc.cn/qq #回调，要和你申请的那个回调一致
-    appId: 1018***
-    appKey: 2785eecad5f***
+    backUrl: http://ruoqing.club/auth/qqLogin #回调，要和你申请的那个回调一致
+    appId: 102104478
+    appKey: Y2KPIxNZWEhvSlqg
+
+xf:
+  appId: c0c44c1a
+  secret: MDI3ODlhZWVhMjM2N2I4YWU4ZDI0ZGVm
+  uploadUrl: https://chatdoc.xfyun.cn/openapi/fileUpload

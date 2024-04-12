@@ -33,6 +33,8 @@ public class NoticeController {
         return Result.ok(noticeService.lambdaQuery().orderByDesc(Notice::getUpdateTime).last("limit 6").list());
     }
 
+
+    @IgnoreAuth
     @GetMapping("/get")
     public Result<Notice> get(@RequestParam Integer noticeId) {
         return Result.ok(noticeService.lambdaQuery().eq(Notice::getNoticeId, noticeId).one());

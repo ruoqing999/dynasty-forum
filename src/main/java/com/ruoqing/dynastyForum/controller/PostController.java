@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author java
@@ -30,24 +30,24 @@ public class PostController {
 
     @IgnoreAuth
     @GetMapping("/pagePost")
-    public Result<PageInfo<PostVO>> pagePost(PostQO qo){
+    public Result<PageInfo<PostVO>> pagePost(PostQO qo) {
         return Result.ok(postService.pagePost(qo));
     }
 
     @PostMapping
-    public Result<Void> post(@RequestBody @Valid PostRO postRO){
+    public Result<Void> post(@RequestBody @Valid PostRO postRO) {
         postService.post(postRO);
         return Result.ok();
     }
 
     @DeleteMapping
-    public Result<Void> del(@RequestParam Integer postId){
+    public Result<Void> del(@RequestParam Integer postId) {
         postService.del(postId);
         return Result.ok();
     }
 
     @GetMapping
-    public Result<PostDetailVO> detail(@RequestParam Integer postId){
+    public Result<PostDetailVO> detail(@RequestParam Integer postId) {
         return Result.ok(postService.detail(postId));
     }
 
