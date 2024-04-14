@@ -37,6 +37,9 @@ public class User extends BaseEntity {
     @TableField("nick_name")
     private String nickName;
 
+    @TableField("avatar")
+    private String avatar;
+
     @TableField(exist = false)
     private String userKey;
 }

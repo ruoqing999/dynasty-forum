@@ -31,7 +31,7 @@ public class ReplyServiceImpl extends ServiceImpl<ReplyMapper, Reply> implements
             updateById(reply);
             return;
         }
-        reply.setUserId(UserContext.get().getThirdOauthId());
+        reply.setUserId(UserContext.get().getUserId());
         save(reply);
     }
 

@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "qq-oauth", url = "https://graph.qq.com")
 public interface QQApi {
 
-    @GetMapping("/oauth2.0/authorize")
-    String authorize(@RequestParam("client_id") String appId, @RequestParam("response_type") String responseType,
-                     @RequestParam("redirect_uri") String redirectUri, @RequestParam("state") String state);
-
     @GetMapping("/oauth2.0/token")
     QQAccessToken getAccessToken(@RequestParam("grant_type") String grantType, @RequestParam("client_id") String appId,
                                  @RequestParam("client_secret") String appKey, @RequestParam("code") String code,

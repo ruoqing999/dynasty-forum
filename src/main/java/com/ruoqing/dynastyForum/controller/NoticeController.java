@@ -4,6 +4,7 @@ import com.ruoqing.dynastyForum.annotation.IgnoreAuth;
 import com.ruoqing.dynastyForum.common.Result;
 import com.ruoqing.dynastyForum.entity.Notice;
 import com.ruoqing.dynastyForum.service.INoticeService;
+import com.ruoqing.dynastyForum.vo.NoticeDetailVO;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,9 +36,9 @@ public class NoticeController {
 
 
     @IgnoreAuth
-    @GetMapping("/get")
-    public Result<Notice> get(@RequestParam Integer noticeId) {
-        return Result.ok(noticeService.lambdaQuery().eq(Notice::getNoticeId, noticeId).one());
+    @GetMapping("/detail")
+    public Result<NoticeDetailVO> detail(@RequestParam Integer noticeId) {
+        return Result.ok(noticeService.detail(noticeId));
     }
 
 }

@@ -19,6 +19,7 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台打印sql
 qq:
   oauth:
+    authorizeUrl: https://graph.qq.com/oauth2.0/authorize
     backUrl: http://ruoqing.club/auth/qqLogin #回调，要和你申请的那个回调一致
     appId: 102104478
     appKey: Y2KPIxNZWEhvSlqg

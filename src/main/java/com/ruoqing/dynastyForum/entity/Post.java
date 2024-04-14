@@ -11,7 +11,7 @@ import lombok.Setter;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author java
@@ -44,4 +44,8 @@ public class Post extends BaseEntity {
 
     @TableField("category_id")
     private Integer categoryId;
+
+    @TableField("views")
+    private Integer views;
+
 }

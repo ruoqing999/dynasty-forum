@@ -4,6 +4,7 @@ import com.ruoqing.dynastyForum.entity.Notice;
 import com.ruoqing.dynastyForum.mapper.NoticeMapper;
 import com.ruoqing.dynastyForum.service.INoticeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ruoqing.dynastyForum.vo.NoticeDetailVO;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> implements INoticeService {
 
+    @Override
+    public NoticeDetailVO detail(Integer noticeId) {
+        return baseMapper.detail(noticeId);
+    }
 }

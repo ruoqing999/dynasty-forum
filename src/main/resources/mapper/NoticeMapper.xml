@@ -2,4 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoqing.dynastyForum.mapper.NoticeMapper">
 
+    <select id="detail" resultType="com.ruoqing.dynastyForum.vo.NoticeDetailVO">
+        select dn.notice_title, dn.notice_content, dn.create_time, du.avatar, du.nick_name
+        from dy_notice dn
+        left join dy_user du on dn.user_id = du.user_id
+        where dn.notice_id = #{noticeId}
+    </select>
+
 </mapper>

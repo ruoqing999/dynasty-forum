@@ -31,4 +31,7 @@ public class ThirdOauth extends BaseEntity {
 
     @TableField("oauth_id")
     private String oauthId;
+
+    @TableField("user_id")
+    private Integer userId;
 }

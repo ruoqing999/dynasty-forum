@@ -27,4 +27,7 @@ public interface IPostService extends IService<Post> {
     PostDetailVO detail(Integer postId);
 
     PageInfo<PostVO> pagePost(PostQO qo);
+
+    void addViews(Integer postId);
+
 }

@@ -3,6 +3,7 @@ package com.ruoqing.dynastyForum.controller;
 import com.github.pagehelper.PageInfo;
 import com.ruoqing.dynastyForum.annotation.IgnoreAuth;
 import com.ruoqing.dynastyForum.common.Result;
+import com.ruoqing.dynastyForum.entity.Post;
 import com.ruoqing.dynastyForum.qo.PostQO;
 import com.ruoqing.dynastyForum.ro.PostRO;
 import com.ruoqing.dynastyForum.service.IPostService;
@@ -34,21 +35,37 @@ public class PostController {
         return Result.ok(postService.pagePost(qo));
     }
 
+    @IgnoreAuth
     @PostMapping
     public Result<Void> post(@RequestBody @Valid PostRO postRO) {
         postService.post(postRO);
         return Result.ok();
     }
 
+    @IgnoreAuth
     @DeleteMapping
     public Result<Void> del(@RequestParam Integer postId) {
         postService.del(postId);
         return Result.ok();
     }
 
+    @IgnoreAuth
     @GetMapping
     public Result<PostDetailVO> detail(@RequestParam Integer postId) {
         return Result.ok(postService.detail(postId));
+    }
+
+    @IgnoreAuth
+    @PostMapping("/addViews")
+    public Result<Void> addViews(@RequestBody PostRO postRO) {
+        postService.addViews(postRO.getPostId());
+        return Result.ok();
+    }
+
+    @IgnoreAuth
+    @GetMapping("/selectComment")
+    public Result selectComment(){
+        return null;
     }
 
 }

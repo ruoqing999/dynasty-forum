@@ -31,7 +31,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
             updateById(comment);
             return;
         }
-        comment.setUserId(UserContext.get().getThirdOauthId());
+        comment.setUserId(UserContext.get().getUserId());
         save(comment);
     }
 

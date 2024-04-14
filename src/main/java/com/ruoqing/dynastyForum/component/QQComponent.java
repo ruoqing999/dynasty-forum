@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "qq.oauth")
 public class QQComponent {
 
+    private String authorizeUrl;
     private String backUrl;
     private String appId;
     private String appKey;

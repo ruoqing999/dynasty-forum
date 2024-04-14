@@ -39,7 +39,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
             updateById(post);
             return;
         }
-        post.setUserId(UserContext.get().getThirdOauthId());
+//        post.setUserId(UserContext.get().getThirdOauthId());
         save(post);
     }
 
@@ -52,8 +52,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
 
     @Override
     public PostDetailVO detail(Integer postId) {
-
-        return null;
+        return baseMapper.detail(postId);
     }
 
     @Override
@@ -61,6 +60,11 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
         PageHelper.startPage(qo.getPageNum(), qo.getPageSize());
         List<PostVO> postVOS = baseMapper.pagePost(qo);
         return new PageInfo<>(postVOS);
+    }
+
+    @Override
+    public void addViews(Integer postId) {
+        baseMapper.addViews(postId);
     }
 
 }

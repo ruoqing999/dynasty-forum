@@ -1,10 +1,10 @@
 package com.ruoqing.dynastyForum.vo;
 
-import com.ruoqing.dynastyForum.entity.Post;
+import com.ruoqing.dynastyForum.entity.Notice;
 import lombok.Data;
 
 @Data
-public class PostDetailVO extends Post {
+public class NoticeDetailVO extends Notice {
 
     private String avatar;
 
