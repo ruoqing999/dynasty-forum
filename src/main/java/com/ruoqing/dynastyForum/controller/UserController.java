@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 
 /**
  * <p>
@@ -22,11 +21,12 @@ import java.io.IOException;
 @RequestMapping("/user")
 public class UserController {
 
-//    @Resource
+    @Resource
     private IUploadImgService uploadImgService;
 
+
     @PostMapping("/uploadImg")
-    public Result<String> uploadImg(MultipartFile file) throws IOException {
+    public Result<String> uploadImg(MultipartFile file) {
         return Result.ok(uploadImgService.uploadImg(file));
     }
 

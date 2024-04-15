@@ -2,7 +2,7 @@ server:
   port: 9999
 spring:
   datasource:
-    url: jdbc:mysql://192.168.56.10:3306/dynasty_forum
+    url: jdbc:mysql://192.168.56.10:3306/dynasty_forum?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -28,3 +28,12 @@ xf:
   appId: c0c44c1a
   secret: MDI3ODlhZWVhMjM2N2I4YWU4ZDI0ZGVm
   uploadUrl: https://chatdoc.xfyun.cn/openapi/fileUpload
+
+img:
+  pt:
+    url: https://www.imgtp.com/api/upload
+    token: 8ad7492886d5f9b6e59932e62e2f14c6
+
+
+
+

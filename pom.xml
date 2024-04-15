@@ -21,8 +21,6 @@
         <jjwt.version>0.9.1</jjwt.version>
         <javax-jaxb.version>2.4.0-b180830.0359</javax-jaxb.version>
         <open-feign.version>4.0.4</open-feign.version>
-<!--        <feign-form.version>3.8.0</feign-form.version>-->
-        <okhttp.version>4.10.0</okhttp.version>
         <pagehelper.boot.version>1.4.7</pagehelper.boot.version>
     </properties>
     <dependencies>
@@ -70,17 +68,6 @@
 <!--            <artifactId>spring-boot-starter-websocket</artifactId>-->
 <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>io.github.openfeign.form</groupId>-->
-<!--            <artifactId>feign-form</artifactId>-->
-<!--            <version>${feign-form.version}</version>-->
-<!--        </dependency>-->
-
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>${okhttp.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
