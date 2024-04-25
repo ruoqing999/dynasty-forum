@@ -1,11 +1,15 @@
 package com.ruoqing.dynastyForum.controller;
 
 import com.ruoqing.dynastyForum.common.Result;
+import com.ruoqing.dynastyForum.entity.Comment;
 import com.ruoqing.dynastyForum.ro.CommentRO;
 import com.ruoqing.dynastyForum.service.ICommentService;
+import com.ruoqing.dynastyForum.vo.CommentVO;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -32,6 +36,11 @@ public class CommentController {
     public Result<Void> del(@RequestParam Integer commentId){
         commentService.del(commentId);
         return Result.ok();
+    }
+
+    @GetMapping
+    public Result<List<CommentVO>> listComment(@RequestParam Integer postId){
+        return Result.ok(commentService.listComment(postId));
     }
 
 }

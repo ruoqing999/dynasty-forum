@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.ruoqing.dynastyForum.common.UserContext;
 import com.ruoqing.dynastyForum.constant.Whether;
 import com.ruoqing.dynastyForum.entity.Post;
+import com.ruoqing.dynastyForum.entity.UserPost;
 import com.ruoqing.dynastyForum.mapper.PostMapper;
 import com.ruoqing.dynastyForum.qo.PostQO;
 import com.ruoqing.dynastyForum.ro.PostRO;
@@ -65,6 +66,11 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
     @Override
     public void addViews(Integer postId) {
         baseMapper.addViews(postId);
+    }
+
+    @Override
+    public void updateCount(UserPost userPost) {
+        baseMapper.updateCount(userPost);
     }
 
 }

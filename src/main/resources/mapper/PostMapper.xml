@@ -6,9 +6,40 @@
         update dy_post set views = views + 1 where status= 0 and post_id = #{postId}
     </update>
 
+    <update id="updateCount">
+        update dy_post
+        <set>
+            <choose>
+                <when test="status == 1">
+                    <if test="type == 1">
+                        approves = approves + 1
+                    </if>
+                    <if test="type == 2">
+                        collections = collections + 1
+                    </if>
+                    <if test="type == 3">
+                        comments = comments + 1
+                    </if>
+                </when>
+                <otherwise>
+                    <if test="type == 1">
+                        approves = approves - 1
+                    </if>
+                    <if test="type == 2">
+                        collections = collections - 1
+                    </if>
+                    <if test="type == 3">
+                        comments = comments - 1
+                    </if>
+                </otherwise>
+            </choose>
+        </set>
+        where post_id = #{postId}
+    </update>
+
     <select id="pagePost" resultType="com.ruoqing.dynastyForum.vo.PostVO">
         select dy.post_id, dy.post_title, dy.post_content, dy.user_id, dy.create_time, dy.category_id,
-               du.nick_name, dc.category_name, du.avatar
+               dy.views, dy.approves, dy.comments, du.nick_name, dc.category_name, du.avatar
         from dy_post dy
         left join dy_user du on du.user_id = dy.user_id
         left join dy_category dc on dc.category_id = dy.category_id

@@ -8,7 +8,7 @@ import com.ruoqing.dynastyForum.component.ImgPTComponent;
 import com.ruoqing.dynastyForum.service.IUploadImgService;
 import com.ruoqing.dynastyForum.util.Assert;
 import com.ruoqing.dynastyForum.util.FileUtil;
-import com.ruoqing.dynastyForum.vo.ImgTokenVO;
+import com.ruoqing.dynastyForum.vo.ImgPtVO;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -40,7 +40,7 @@ public class ImgTpServiceImpl implements IUploadImgService {
         try (HttpResponse response = HttpUtil.createPost(imgPTComponent.getUrl()).form(paramMap).addHeaders(headerMap).execute()) {
             log.info("上传图片响应: {}", response.body());
             Assert.isTrue(!Objects.equals(response.getStatus(), HttpStatus.HTTP_OK), "上传失败");
-            return JSONUtil.toBean(response.body(), ImgTokenVO.class).getData().getUrl();
+            return JSONUtil.toBean(response.body(), ImgPtVO.class).getData().getUrl();
         }
     }
 }

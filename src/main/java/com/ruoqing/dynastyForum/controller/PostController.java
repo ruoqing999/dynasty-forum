@@ -3,7 +3,6 @@ package com.ruoqing.dynastyForum.controller;
 import com.github.pagehelper.PageInfo;
 import com.ruoqing.dynastyForum.annotation.IgnoreAuth;
 import com.ruoqing.dynastyForum.common.Result;
-import com.ruoqing.dynastyForum.entity.Post;
 import com.ruoqing.dynastyForum.qo.PostQO;
 import com.ruoqing.dynastyForum.ro.PostRO;
 import com.ruoqing.dynastyForum.service.IPostService;
@@ -64,7 +63,7 @@ public class PostController {
 
     @IgnoreAuth
     @GetMapping("/selectComment")
-    public Result selectComment(){
+    public Result<Void> selectComment(){
         return null;
     }
 

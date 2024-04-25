@@ -48,4 +48,10 @@ public class Post extends BaseEntity {
     @TableField("views")
     private Integer views;
 
+    @TableField("approves")
+    private Integer approves;
+
+    @TableField("collections")
+    private Integer collections;
+
 }

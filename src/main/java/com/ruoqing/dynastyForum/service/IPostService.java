@@ -3,6 +3,7 @@ package com.ruoqing.dynastyForum.service;
 import com.github.pagehelper.PageInfo;
 import com.ruoqing.dynastyForum.entity.Post;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ruoqing.dynastyForum.entity.UserPost;
 import com.ruoqing.dynastyForum.qo.PostQO;
 import com.ruoqing.dynastyForum.ro.PostRO;
 import com.ruoqing.dynastyForum.vo.PostDetailVO;
@@ -29,5 +30,7 @@ public interface IPostService extends IService<Post> {
     PageInfo<PostVO> pagePost(PostQO qo);
 
     void addViews(Integer postId);
+
+    void updateCount(UserPost userPost);
 
 }

@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface QQApi {
 
     @GetMapping("/oauth2.0/token")
-    QQAccessToken getAccessToken(@RequestParam("grant_type") String grantType, @RequestParam("client_id") String appId,
+    String getAccessToken(@RequestParam("grant_type") String grantType, @RequestParam("client_id") String appId,
                                  @RequestParam("client_secret") String appKey, @RequestParam("code") String code,
                                  @RequestParam("redirect_uri") String redirectUri, @RequestParam("fmt") String fmt,
                                  @RequestParam("need_openid") Integer needOpenid);
 
     @GetMapping("/user/get_user_info")
-    QQUserInfO getUserInfo(@RequestParam("access_token") String accessToken, @RequestParam("oauth_consumer_key") String appId,
+    String getUserInfo(@RequestParam("access_token") String accessToken, @RequestParam("oauth_consumer_key") String appId,
                            @RequestParam("openid") String openId);
 
 }

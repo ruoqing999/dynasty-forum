@@ -8,8 +8,9 @@ public class PostVO extends Post {
 
     private String nickName;
     private String categoryName;
-    private Integer views = 1000;
-    private Integer comments = 200;
+    private Integer views;
+    private Integer comments;
+    private Integer approves;
     private String avatar;
 
 }

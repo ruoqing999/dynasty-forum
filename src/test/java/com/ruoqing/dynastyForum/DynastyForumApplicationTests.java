@@ -1,5 +1,8 @@
 package com.ruoqing.dynastyForum;
 
+import cn.hutool.core.net.URLEncodeUtil;
+import cn.hutool.core.util.CharsetUtil;
+import cn.hutool.core.util.URLUtil;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpStatus;
 import cn.hutool.http.HttpUtil;
@@ -20,10 +23,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URLEncoder;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +36,7 @@ import java.util.Objects;
 
 @SpringBootTest
 @Slf4j
+@ActiveProfiles("dev")
 class DynastyForumApplicationTests {
 
     private static final String SEPARATOR = System.getProperty("file.separator");
@@ -55,6 +61,9 @@ class DynastyForumApplicationTests {
     @Test
     void testQQ() throws FileNotFoundException {
         log.info("qqComponent: {}", qqComponent);
+        String encode1 = URLEncoder.encode(qqComponent.getBackUrl(), CharsetUtil.CHARSET_UTF_8);
+        String encode2 = URLEncoder.encode(qqComponent.getBackUrl(), CharsetUtil.CHARSET_GBK);
+        log.info("encode1: {}, encode2: {}", encode1, encode2);
         log.info("xunFeiComponent: {}", xunFeiComponent);
         log.info("test file:{}", ResourceUtils.getFile("classpath:test.txt"));
     }
@@ -101,7 +110,7 @@ class DynastyForumApplicationTests {
                         .pathInfo(Collections.singletonMap(
                                 OutputFile.xml,
                                 PATH + SEPARATOR + "resources" + SEPARATOR + "mapper")))
-                .strategyConfig(builder -> builder.addInclude("dy_notice").addTablePrefix("dy")
+                .strategyConfig(builder -> builder.addInclude("dy_user_post").addTablePrefix("dy")
                         .entityBuilder()
                         .superClass(BaseEntity.class)
                         .addIgnoreColumns("create_time", "update_time", "status")

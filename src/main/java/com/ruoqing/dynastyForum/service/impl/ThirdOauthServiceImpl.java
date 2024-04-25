@@ -1,6 +1,8 @@
 package com.ruoqing.dynastyForum.service.impl;
 
 import cn.hutool.core.lang.UUID;
+import cn.hutool.core.util.CharsetUtil;
+import cn.hutool.json.JSONUtil;
 import com.ruoqing.dynastyForum.api.QQApi;
 import com.ruoqing.dynastyForum.component.QQComponent;
 import com.ruoqing.dynastyForum.component.RedisService;
@@ -18,10 +20,12 @@ import com.ruoqing.dynastyForum.vo.QQAccessToken;
 import com.ruoqing.dynastyForum.vo.QQUserInfO;
 import com.ruoqing.dynastyForum.vo.UserInfoVO;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.net.URLEncoder;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -34,6 +38,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2024-01-29
  */
 @Service
+@Slf4j
 public class ThirdOauthServiceImpl extends ServiceImpl<ThirdOauthMapper, ThirdOauth> implements IThirdOauthService {
 
     private static final String RESPONSE_TYPE = "code";
@@ -56,9 +61,10 @@ public class ThirdOauthServiceImpl extends ServiceImpl<ThirdOauthMapper, ThirdOa
     @Override
     public String qqUrl() {
         String state = UUID.fastUUID().toString();
+        String encodeUrl = URLEncoder.encode(qqComponent.getBackUrl(), CharsetUtil.CHARSET_GBK);
         redisService.set(RedisConstant.QQ_STATE + state, state, 10, TimeUnit.MINUTES);
-        return String.format("%s?client_id=%s&responseType=%s&redirectUri=%s&state=%s",
-                qqComponent.getAuthorizeUrl(), qqComponent.getAppId(), RESPONSE_TYPE, qqComponent.getBackUrl(), state);
+        return String.format("%s?client_id=%s&response_type=%s&redirect_uri=%s&state=%s",
+                qqComponent.getAuthorizeUrl(), qqComponent.getAppId(), RESPONSE_TYPE, encodeUrl, state);
     }
 
     @Override
@@ -67,10 +73,13 @@ public class ThirdOauthServiceImpl extends ServiceImpl<ThirdOauthMapper, ThirdOa
         String val = redisService.get(RedisConstant.QQ_STATE + state);
         Assert.isTrue(!Objects.equals(val, state), "QQ-State错误");
 
-        QQAccessToken accessToken = qqApi.getAccessToken(GRANT_TYPE, qqComponent.getAppId(), qqComponent.getAppKey(),
+        String qqAccessToken = qqApi.getAccessToken(GRANT_TYPE, qqComponent.getAppId(), qqComponent.getAppKey(),
                 code, qqComponent.getBackUrl(), FMT, Whether.YES);
-        String openId = accessToken.getOpenId();
-        QQUserInfO userInfo = qqApi.getUserInfo(accessToken.getAccess_token(), qqComponent.getAppId(), openId);
+        QQAccessToken accessToken = JSONUtil.toBean(qqAccessToken, QQAccessToken.class);
+        String openId = accessToken.getOpenid();
+        String qqUserInfo = qqApi.getUserInfo(accessToken.getAccess_token(), qqComponent.getAppId(), openId);
+        log.info("qqUserInfo:{}", qqUserInfo);
+        QQUserInfO userInfo = JSONUtil.toBean(qqUserInfo, QQUserInfO.class);
         Assert.isTrue(userInfo.getRet() != NORMAL_RET, "QQ-获取用户信息失败");
 
         ThirdOauth thirdOauth = lambdaQuery().eq(ThirdOauth::getOauthId, openId).one();

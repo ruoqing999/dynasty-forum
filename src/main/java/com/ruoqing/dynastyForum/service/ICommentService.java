@@ -3,6 +3,9 @@ package com.ruoqing.dynastyForum.service;
 import com.ruoqing.dynastyForum.entity.Comment;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ruoqing.dynastyForum.ro.CommentRO;
+import com.ruoqing.dynastyForum.vo.CommentVO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,5 +20,7 @@ public interface ICommentService extends IService<Comment> {
     void comment(CommentRO ro);
 
     void del(Integer commentId);
+
+    List<CommentVO> listComment(Integer postId);
 
 }

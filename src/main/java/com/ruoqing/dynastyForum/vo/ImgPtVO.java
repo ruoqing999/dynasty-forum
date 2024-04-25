@@ -3,7 +3,7 @@ package com.ruoqing.dynastyForum.vo;
 import lombok.Data;
 
 @Data
-public class ImgTokenVO {
+public class ImgPtVO {
 
     private Integer code;
     private String msg;

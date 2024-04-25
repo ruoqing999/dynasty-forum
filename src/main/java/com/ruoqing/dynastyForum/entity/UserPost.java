@@ -14,30 +14,27 @@ import lombok.Setter;
  * </p>
  *
  * @author java
- * @since 2024-01-29
+ * @since 2024-04-23
  */
 @Getter
 @Setter
-@TableName("dy_reply")
-public class Reply extends BaseEntity {
+@TableName("dy_user_post")
+public class UserPost extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "reply_id", type = IdType.ASSIGN_ID)
-    private Integer replyId;
-
-    @TableField("comment_id")
-    private Integer commentId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     @TableField("user_id")
     private Integer userId;
 
-    @TableField("reply_user_id")
-    private Integer replyUserId;
+    @TableField("post_id")
+    private Integer postId;
 
-    @TableField("content")
-    private String content;
-
-    @TableField(value = "parent_reply_id")
-    private Integer parentReplyId;
+    /**
+     * 1-收藏 2-点赞 3-评论
+     */
+    @TableField("type")
+    private Integer type;
 }

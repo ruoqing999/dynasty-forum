@@ -7,8 +7,12 @@ import com.ruoqing.dynastyForum.mapper.ReplyMapper;
 import com.ruoqing.dynastyForum.ro.ReplyRO;
 import com.ruoqing.dynastyForum.service.IReplyService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ruoqing.dynastyForum.vo.ReplyVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -31,7 +35,7 @@ public class ReplyServiceImpl extends ServiceImpl<ReplyMapper, Reply> implements
             updateById(reply);
             return;
         }
-        reply.setUserId(UserContext.get().getUserId());
+//        reply.setUserId(UserContext.get().getUserId());
         save(reply);
     }
 
@@ -40,5 +44,10 @@ public class ReplyServiceImpl extends ServiceImpl<ReplyMapper, Reply> implements
         lambdaUpdate().eq(Reply::getReplyId, replyId)
                 .set(Reply::getStatus, Whether.F)
                 .update();
+    }
+
+    @Override
+    public List<ReplyVO> listReply(Set<Integer> commentIdSets) {
+       return baseMapper.listReply(commentIdSets);
     }
 }

@@ -2,4 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoqing.dynastyForum.mapper.CommentMapper">
 
+    <select id="listComment" resultType="com.ruoqing.dynastyForum.vo.CommentVO">
+        select dc.comment_id, dc.content, dc.create_time, du.avatar, du.nick_name
+        from dy_comment dc
+                 left join dy_user du on dc.user_id = du.user_id
+        where dc.`status` = 0
+          and post_id = #{postId}
+    </select>
+
 </mapper>
