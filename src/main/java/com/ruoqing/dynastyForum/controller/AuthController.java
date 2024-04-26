@@ -9,7 +9,6 @@ import com.ruoqing.dynastyForum.ro.LoginRO;
 import com.ruoqing.dynastyForum.ro.RegisterRO;
 import com.ruoqing.dynastyForum.service.ILocalAuthService;
 import com.ruoqing.dynastyForum.service.IThirdOauthService;
-import com.ruoqing.dynastyForum.vo.QQUserInfO;
 import com.ruoqing.dynastyForum.vo.UserInfoVO;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;

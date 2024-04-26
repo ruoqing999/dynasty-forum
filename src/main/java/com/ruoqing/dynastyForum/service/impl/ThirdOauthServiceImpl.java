@@ -86,7 +86,8 @@ public class ThirdOauthServiceImpl extends ServiceImpl<ThirdOauthMapper, ThirdOa
         if (null == thirdOauth) {
 
             User user = new User();
-            user.setNickName(userInfo.getNickName());
+            user.setNickName(userInfo.getNickname());
+            user.setAvatar(userInfo.getFigureurl_qq_2());
             userService.save(user);
 
             ThirdOauth saveThirdOauth = new ThirdOauth();
@@ -99,7 +100,8 @@ public class ThirdOauthServiceImpl extends ServiceImpl<ThirdOauthMapper, ThirdOa
 
         UserInfoVO userInfoVO = new UserInfoVO();
         BeanUtils.copyProperties(userInfo, userInfoVO);
-        userInfoVO.setAvatarUrl(userInfo.getFigureurl_qq_1());
+        userInfoVO.setNickName(userInfo.getNickname());
+        userInfoVO.setAvatarUrl(userInfo.getFigureurl_qq_2());
         userInfoVO.setOauthType(OauthEnum.QQ.getCode());
         userInfoVO.setUserId(thirdOauth.getUserId());
         return userInfoVO;

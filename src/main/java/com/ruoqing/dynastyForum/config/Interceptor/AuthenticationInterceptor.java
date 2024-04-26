@@ -6,7 +6,6 @@ import com.ruoqing.dynastyForum.common.UserContext;
 import com.ruoqing.dynastyForum.component.RedisService;
 import com.ruoqing.dynastyForum.constant.RedisConstant;
 import com.ruoqing.dynastyForum.constant.ResultConstant;
-import com.ruoqing.dynastyForum.entity.User;
 import com.ruoqing.dynastyForum.handler.exception.AuthorizationException;
 import com.ruoqing.dynastyForum.util.JWTUtil;
 import com.ruoqing.dynastyForum.vo.UserInfoVO;
@@ -29,10 +28,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object object) {
 
-        if (true) {
-            return true;
-        }
-
         // 如果不是映射到方法直接通过
         if (!(object instanceof HandlerMethod handlerMethod)) {
             return true;
@@ -43,7 +38,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        String token = req.getHeader("token");
+        String token = req.getHeader("Token");
         if (ObjectUtils.isEmpty(token))
             throw new AuthorizationException(ResultConstant.AUTHORIZATION_ERROR.getMessage());
         //验证token
