@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.ruoqing.dynastyForum.entity.User;
 import com.ruoqing.dynastyForum.ro.LoginRO;
 import com.ruoqing.dynastyForum.ro.RegisterRO;
+import com.ruoqing.dynastyForum.vo.UserInfoVO;
 
 /**
  * <p>
@@ -23,5 +24,8 @@ public interface ILocalAuthService extends IService<LocalAuth> {
     boolean logout();
 
     boolean registerUser(Integer userId, String account, String password);
+
+    UserInfoVO getInfo();
+
 
 }

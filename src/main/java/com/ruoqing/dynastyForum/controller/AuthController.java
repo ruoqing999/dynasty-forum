@@ -59,4 +59,9 @@ public class AuthController {
         return Result.ok(localAuthService.logout());
     }
 
+    @GetMapping("/info")
+    public Result<UserInfoVO> info(){
+        return Result.ok(localAuthService.getInfo());
+    }
+
 }

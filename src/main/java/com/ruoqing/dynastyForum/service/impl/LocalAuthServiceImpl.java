@@ -79,4 +79,9 @@ public class LocalAuthServiceImpl extends ServiceImpl<LocalAuthMapper, LocalAuth
         localAuth.setPassword(DigestUtil.bcrypt(password));
         return save(localAuth);
     }
+
+    @Override
+    public UserInfoVO getInfo() {
+        return UserContext.get();
+    }
 }
