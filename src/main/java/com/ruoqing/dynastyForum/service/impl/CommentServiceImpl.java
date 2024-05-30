@@ -1,6 +1,8 @@
 package com.ruoqing.dynastyForum.service.impl;
 
+import cn.hutool.core.collection.CollectionUtil;
 import com.ruoqing.dynastyForum.common.UserContext;
+import com.ruoqing.dynastyForum.constant.SortTypeEnum;
 import com.ruoqing.dynastyForum.constant.Whether;
 import com.ruoqing.dynastyForum.entity.Comment;
 import com.ruoqing.dynastyForum.entity.Reply;
@@ -11,13 +13,16 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoqing.dynastyForum.service.IPostService;
 import com.ruoqing.dynastyForum.service.IReplyService;
 import com.ruoqing.dynastyForum.service.IUserPostService;
+import com.ruoqing.dynastyForum.util.CommentTreeUtils;
 import com.ruoqing.dynastyForum.vo.CommentVO;
 import com.ruoqing.dynastyForum.vo.ReplyVO;
+import com.ruoqing.dynastyForum.vo.UserInfoVO;
 import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -47,7 +52,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
             updateById(comment);
             return;
         }
-//        comment.setUserId(UserContext.get().getUserId());
+        comment.setUserId(UserContext.get().getUserId());
         save(comment);
     }
 
@@ -57,19 +62,36 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         lambdaUpdate().eq(Comment::getCommentId, commentId)
                 .set(Comment::getStatus, Whether.F)
                 .update();
-
-//        postService.updateCount();
-
     }
 
     @Override
-    public List<CommentVO> listComment(Integer postId) {
+    public List<CommentVO> listComment(Integer postId, Integer sortType) {
         List<CommentVO> commentVOS = baseMapper.listComment(postId);
-        Set<Integer> commentIdSets = commentVOS.stream().map(CommentVO::getCommentId).collect(Collectors.toSet());
-        Map<Integer, List<ReplyVO>> commentId2Reply = replyService.listReply(commentIdSets)
-                .stream()
-                .collect(Collectors.groupingBy(ReplyVO::getCommentId));
-        commentVOS.forEach(x -> x.setReplyVOList(commentId2Reply.get(x.getCommentId())));
+        if (CollectionUtil.isNotEmpty(commentVOS)) {
+            buildChildComment(commentVOS);
+        }
+        commentVOS = CommentTreeUtils.toTree(commentVOS);
+        // 最热评论（先按点赞数降序，再按回复数降序）
+        if (SortTypeEnum.HOTTEST.getCode() == sortType) {
+            commentVOS = commentVOS.stream()
+                    .sorted(Comparator.comparing(CommentVO::getApproves, Comparator.nullsLast(Comparator.reverseOrder()))
+                            .thenComparing(CommentVO::getRepliesCount, Comparator.nullsLast(Comparator.reverseOrder())))
+                    .collect(Collectors.toList());
+        } else if (SortTypeEnum.NEWEST.getCode() == sortType) {
+            commentVOS = commentVOS.stream()
+                    .sorted(Comparator.comparing(CommentVO::getCreateTime, Comparator.nullsLast(Comparator.reverseOrder())))
+                    .collect(Collectors.toList());
+        }
         return commentVOS;
+    }
+
+    private void buildChildComment(List<CommentVO> commentVOS) {
+        Map<Integer, List<CommentVO>> parentId2Map = commentVOS.stream().collect(Collectors.groupingBy(Comment::getParentId));
+        commentVOS.forEach(x -> {
+            Integer commentId = x.getCommentId();
+            if (parentId2Map.containsKey(commentId)) {
+                x.setRepliesCount(parentId2Map.get(commentId).size());
+            }
+        });
     }
 }

@@ -10,6 +10,14 @@ import java.io.IOException;
 @Slf4j
 public class FileUtil {
 
+    /**
+     * 文件是否过大
+     */
+    public static boolean isFileNotTooBig(byte[] bytes) {
+        //1024*1024*5=5M
+        return bytes.length > 5242880L;
+    }
+
     public static File transferToFile(MultipartFile multipartFile) {
         File file;
         try {

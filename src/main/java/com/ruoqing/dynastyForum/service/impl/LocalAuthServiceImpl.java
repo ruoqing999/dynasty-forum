@@ -82,6 +82,12 @@ public class LocalAuthServiceImpl extends ServiceImpl<LocalAuthMapper, LocalAuth
 
     @Override
     public UserInfoVO getInfo() {
-        return UserContext.get();
+        UserInfoVO userInfoVO = UserContext.get();
+        Integer userId = userInfoVO.getUserId();
+        User user = userService.lambdaQuery().eq(User::getUserId, userId).one();
+        userInfoVO.setIntro(user.getIntro());
+        userInfoVO.setNickName(user.getNickName());
+        userInfoVO.setAvatarUrl(user.getAvatar());
+        return userInfoVO;
     }
 }

@@ -1,5 +1,9 @@
 server:
   port: 9999
+  servlet:
+    context-path: /api
+  tomcat:
+    max-swallow-size: 10MB
 mybatis-plus:
   mapperLocations: classpath:mapper/*Mapper.xml
   global-config:
@@ -10,7 +14,7 @@ mybatis-plus:
 qq:
   oauth:
     authorizeUrl: https://graph.qq.com/oauth2.0/authorize
-    backUrl: http://wxby.ruoqing.club/auth/qqLogin #回调，要和你申请的那个回调一致
+    backUrl: https://wcby.ruoqing.club/auth/qqLogin #回调，要和你申请的那个回调一致
     appId: 102104478
     appKey: Y2KPIxNZWEhvSlqg
 

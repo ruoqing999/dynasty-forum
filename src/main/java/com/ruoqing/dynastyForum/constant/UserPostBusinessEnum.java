@@ -5,10 +5,10 @@ import lombok.Getter;
 @Getter
 public enum UserPostBusinessEnum {
 
-    APPROVE(1, "点赞"),
-    COLLECT(2, "收藏"),
+    COLLECT(1, "收藏"),
+    APPROVE(2, "点赞"),
+    COMMENT(3, "评论"),
     REPLY(4, "回复"),
-    COMMENT(5, "评论"),
     DELETE(6, "删除"),
     EDIT(7, "编辑"),
     ADD(8, "添加"),

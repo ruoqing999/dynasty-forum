@@ -2,12 +2,12 @@ package com.ruoqing.dynastyForum.controller;
 
 import com.ruoqing.dynastyForum.annotation.IgnoreAuth;
 import com.ruoqing.dynastyForum.common.Result;
-import com.ruoqing.dynastyForum.entity.Category;
-import com.ruoqing.dynastyForum.service.ICategoryService;
-import com.ruoqing.dynastyForum.vo.CategoryVO;
+import com.ruoqing.dynastyForum.entity.Carousel;
+import com.ruoqing.dynastyForum.service.ICarouselService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,19 +18,19 @@ import java.util.List;
  * </p>
  *
  * @author java
- * @since 2024-01-28
+ * @since 2024-05-24
  */
 @RestController
-@RequestMapping("/category")
-public class CategoryController {
+@RequestMapping("/carousel")
+public class CarouselController {
 
     @Resource
-    private ICategoryService categoryService;
-
+    private ICarouselService carouselService;
 
     @IgnoreAuth
-    @GetMapping("/list")
-    public Result<List<CategoryVO>> list(Category category){
-        return Result.ok(categoryService.getList(category));
+    @GetMapping("list")
+    public Result<List<Carousel>> list(){
+        return Result.ok(carouselService.lambdaQuery().orderByAsc(Carousel::getSort).list());
     }
+
 }

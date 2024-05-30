@@ -3,6 +3,8 @@ package com.ruoqing.dynastyForum.ro;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.List;
+
 @Data
 public class PostRO {
 
@@ -13,6 +15,8 @@ public class PostRO {
 
     private String postContent;
 
-    private Integer categoryId;
+    private String rawContent;
+
+    private List<Integer> categoryIds;
 
 }

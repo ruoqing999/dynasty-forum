@@ -1,5 +1,6 @@
 package com.ruoqing.dynastyForum.controller;
 
+import com.ruoqing.dynastyForum.annotation.IgnoreAuth;
 import com.ruoqing.dynastyForum.common.Result;
 import com.ruoqing.dynastyForum.entity.Comment;
 import com.ruoqing.dynastyForum.ro.CommentRO;
@@ -38,9 +39,11 @@ public class CommentController {
         return Result.ok();
     }
 
-    @GetMapping
-    public Result<List<CommentVO>> listComment(@RequestParam Integer postId){
-        return Result.ok(commentService.listComment(postId));
+    @IgnoreAuth
+    @GetMapping("listComment")
+    public Result<List<CommentVO>> listComment(@RequestParam Integer postId,
+                                               @RequestParam Integer sortType){
+        return Result.ok(commentService.listComment(postId, sortType));
     }
 
 }

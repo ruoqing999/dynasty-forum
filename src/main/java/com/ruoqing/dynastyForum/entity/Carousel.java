@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.ruoqing.dynastyForum.common.BaseEntity;
+
+import java.io.Serial;
 import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,21 +17,22 @@ import lombok.Setter;
  * </p>
  *
  * @author java
- * @since 2024-01-28
+ * @since 2024-05-24
  */
 @Getter
 @Setter
-@TableName("dy_category")
-public class Category extends BaseEntity {
+@TableName("dy_carousel")
+public class Carousel extends BaseEntity implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "category_id", type = IdType.ASSIGN_ID)
-    private Integer categoryId;
+    @TableId(value = "carousel_id", type = IdType.AUTO)
+    private Integer carouselId;
 
-    @TableField("category_name")
-    private String categoryName;
+    @TableField("carousel_img")
+    private String carouselImg;
 
-    @TableField("category_logo")
-    private String categoryLogo;
+    @TableField("sort")
+    private Integer sort;
 }

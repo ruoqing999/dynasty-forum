@@ -6,14 +6,16 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.ruoqing.dynastyForum.entity.UserPost;
 import com.ruoqing.dynastyForum.qo.PostQO;
 import com.ruoqing.dynastyForum.ro.PostRO;
+import com.ruoqing.dynastyForum.vo.CountVO;
 import com.ruoqing.dynastyForum.vo.PostDetailVO;
 import com.ruoqing.dynastyForum.vo.PostVO;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import java.io.IOException;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author java
@@ -21,16 +23,16 @@ import java.util.List;
  */
 public interface IPostService extends IService<Post> {
 
-    void post(PostRO postRO);
+    PageInfo<PostVO> pagePost(PostQO qo);
+
+    void post(MultipartFile file, PostRO postRO) throws IOException;
 
     void del(Integer postId);
 
-    PostDetailVO detail(Integer postId);
-
-    PageInfo<PostVO> pagePost(PostQO qo);
+    PostDetailVO detail(Integer postId, boolean isPv);
 
     void addViews(Integer postId);
 
-    void updateCount(UserPost userPost);
+    CountVO getPostCount(Integer postId, Integer userId);
 
 }

@@ -1,18 +1,19 @@
 package com.ruoqing.dynastyForum.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.ruoqing.dynastyForum.annotation.IgnoreAuth;
 import com.ruoqing.dynastyForum.common.Result;
 import com.ruoqing.dynastyForum.entity.UserPost;
+import com.ruoqing.dynastyForum.qo.PostQO;
 import com.ruoqing.dynastyForum.service.IUserPostService;
+import com.ruoqing.dynastyForum.vo.PostVO;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author java
@@ -26,9 +27,14 @@ public class UserPostController {
     private IUserPostService userPostService;
 
     @PostMapping
-    public Result<Void> post(@RequestBody UserPost userPost){
+    public Result<Void> post(@RequestBody UserPost userPost) {
         userPostService.post(userPost);
         return Result.ok();
+    }
+
+    @GetMapping("/listApprovePost")
+    public Result<PageInfo<PostVO>> listApprovePost(PostQO qo) {
+        return Result.ok(userPostService.listApprovePost(qo));
     }
 
 }

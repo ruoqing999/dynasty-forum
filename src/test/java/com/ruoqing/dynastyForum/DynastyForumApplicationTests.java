@@ -108,7 +108,7 @@ class DynastyForumApplicationTests {
                         .pathInfo(Collections.singletonMap(
                                 OutputFile.xml,
                                 PATH + SEPARATOR + "resources" + SEPARATOR + "mapper")))
-                .strategyConfig(builder -> builder.addInclude("dy_user_post").addTablePrefix("dy")
+                .strategyConfig(builder -> builder.addInclude("dy_carousel").addTablePrefix("dy")
                         .entityBuilder()
                         .superClass(BaseEntity.class)
                         .addIgnoreColumns("create_time", "update_time", "status")

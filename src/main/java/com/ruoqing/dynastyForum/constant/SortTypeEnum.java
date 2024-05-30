@@ -3,15 +3,19 @@ package com.ruoqing.dynastyForum.constant;
 import lombok.Getter;
 
 @Getter
-public enum OauthEnum {
+public enum SortTypeEnum {
 
-    QQ("qq", 1)
+    DEFAULT(0, "默认排序"),
+
+    HOTTEST(1, "最热排序"),
+
+    NEWEST(2, "最新排序"),
     ;
 
     private final String type;
     private final int code;
 
-    OauthEnum(String type, int code) {
+    SortTypeEnum(int code, String type) {
         this.type = type;
         this.code = code;
     }

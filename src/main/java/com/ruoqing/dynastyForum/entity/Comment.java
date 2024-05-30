@@ -30,6 +30,9 @@ public class Comment extends BaseEntity {
     @TableField("user_id")
     private Integer userId;
 
+    @TableField("parent_id")
+    private Integer parentId;
+
     @TableField("post_id")
     private Integer postId;
 

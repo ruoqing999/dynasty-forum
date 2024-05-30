@@ -21,6 +21,6 @@ public interface ICommentService extends IService<Comment> {
 
     void del(Integer commentId);
 
-    List<CommentVO> listComment(Integer postId);
+    List<CommentVO> listComment(Integer postId, Integer sortType);
 
 }

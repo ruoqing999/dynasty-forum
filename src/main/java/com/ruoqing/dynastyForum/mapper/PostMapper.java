@@ -26,6 +26,4 @@ public interface PostMapper extends BaseMapper<Post> {
 
     PostDetailVO detail(@Param("postId") Integer postId);
 
-    void updateCount(UserPost userPost);
-
 }
