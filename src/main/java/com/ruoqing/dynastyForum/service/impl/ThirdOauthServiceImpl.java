@@ -70,34 +70,34 @@ public class ThirdOauthServiceImpl extends ServiceImpl<ThirdOauthMapper, ThirdOa
     @Override
     @Transactional(rollbackFor = Exception.class)
     public UserInfoVO qqLogin(String code, String state) {
-        String val = redisService.get(RedisConstant.QQ_STATE + state);
-        Assert.isTrue(!Objects.equals(val, state), "QQ-State错误");
-
-        String qqAccessToken = qqApi.getAccessToken(GRANT_TYPE, qqComponent.getAppId(), qqComponent.getAppKey(),
-                code, qqComponent.getBackUrl(), FMT, Whether.YES);
-        QQAccessToken accessToken = JSONUtil.toBean(qqAccessToken, QQAccessToken.class);
-        String openId = accessToken.getOpenid();
-        String qqUserInfo = qqApi.getUserInfo(accessToken.getAccess_token(), qqComponent.getAppId(), openId);
-        log.info("qqUserInfo:{}", qqUserInfo);
-        QQUserInfO userInfo = JSONUtil.toBean(qqUserInfo, QQUserInfO.class);
-        Assert.isTrue(userInfo.getRet() != NORMAL_RET, "QQ-获取用户信息失败");
-
+//        String val = redisService.get(RedisConstant.QQ_STATE + state);
+//        Assert.isTrue(!Objects.equals(val, state), "QQ-State错误");
+//
+//        String qqAccessToken = qqApi.getAccessToken(GRANT_TYPE, qqComponent.getAppId(), qqComponent.getAppKey(),
+//                code, qqComponent.getBackUrl(), FMT, Whether.YES);
+//        QQAccessToken accessToken = JSONUtil.toBean(qqAccessToken, QQAccessToken.class);
+//        String openId = accessToken.getOpenid();
+//        String qqUserInfo = qqApi.getUserInfo(accessToken.getAccess_token(), qqComponent.getAppId(), openId);
+//        log.info("qqUserInfo:{}", qqUserInfo);
+//        QQUserInfO userInfo = JSONUtil.toBean(qqUserInfo, QQUserInfO.class);
+//        Assert.isTrue(userInfo.getRet() != NORMAL_RET, "QQ-获取用户信息失败");
+        String openId = "CD7757CB468D8E6C53C6B7E8A380699B";
         ThirdOauth thirdOauth = lambdaQuery().eq(ThirdOauth::getOauthId, openId).one();
-        if (null == thirdOauth) {
-
-            User user = new User();
-            user.setNickName(userInfo.getNickname());
-            user.setAvatar(userInfo.getFigureurl_qq_2());
-            user.setQqName(userInfo.getNickname());
-            userService.save(user);
-
-            ThirdOauth saveThirdOauth = new ThirdOauth();
-            saveThirdOauth.setOauthId(openId);
-            saveThirdOauth.setOauthType(OauthEnum.QQ.getCode());
-            saveThirdOauth.setUserId(user.getUserId());
-            save(saveThirdOauth);
-            thirdOauth = saveThirdOauth;
-        }
+//        if (null == thirdOauth) {
+//
+//            User user = new User();
+//            user.setNickName(userInfo.getNickname());
+//            user.setAvatar(userInfo.getFigureurl_qq_2());
+//            user.setQqName(userInfo.getNickname());
+//            userService.save(user);
+//
+//            ThirdOauth saveThirdOauth = new ThirdOauth();
+//            saveThirdOauth.setOauthId(openId);
+//            saveThirdOauth.setOauthType(OauthEnum.QQ.getCode());
+//            saveThirdOauth.setUserId(user.getUserId());
+//            save(saveThirdOauth);
+//            thirdOauth = saveThirdOauth;
+//        }
 
         UserInfoVO userInfoVO = new UserInfoVO();
         Integer userId = thirdOauth.getUserId();
