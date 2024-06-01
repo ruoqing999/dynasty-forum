@@ -35,7 +35,7 @@ public class AuthController {
 
     @IgnoreAuth
     @GetMapping("/qqLogin")
-    public Result<String> qqLogin(@RequestParam String code, @RequestParam String state) {
+    public Result<String> qqLogin(@RequestParam(required = false) String code, @RequestParam(required = false) String state) {
         UserInfoVO userInfoVO = thirdOauthService.qqLogin(code, state);
         return Result.ok(tokenService.createToken(userInfoVO));
     }

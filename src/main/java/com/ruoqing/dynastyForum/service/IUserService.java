@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface IUserService extends IService<User> {
 
-    UserOperateCountVO getUserOperateCount();
+    UserOperateCountVO getUserOperateCount(Integer userId);
 
     Boolean isValidUser(String username);
 

@@ -35,11 +35,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private IUserPostService userPostService;
 
     @Override
-    public UserOperateCountVO getUserOperateCount() {
+    public UserOperateCountVO getUserOperateCount(Integer userId) {
         UserOperateCountVO vo = new UserOperateCountVO();
 
-        UserInfoVO userInfoVO = UserContext.get();
-        Integer userId = userInfoVO.getUserId();
         int postCount = postService.lambdaQuery().eq(Post::getUserId, userId).count().intValue();
         int approveCount = userPostService.lambdaQuery().eq(UserPost::getUserId, userId)
                 .eq(UserPost::getType, UserPostBusinessEnum.APPROVE.getCode()).count().intValue();

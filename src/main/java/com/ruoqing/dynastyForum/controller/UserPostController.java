@@ -32,6 +32,7 @@ public class UserPostController {
         return Result.ok();
     }
 
+    @IgnoreAuth
     @GetMapping("/listApprovePost")
     public Result<PageInfo<PostVO>> listApprovePost(PostQO qo) {
         return Result.ok(userPostService.listApprovePost(qo));

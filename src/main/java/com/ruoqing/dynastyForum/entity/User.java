@@ -46,6 +46,9 @@ public class User extends BaseEntity {
     @TableField("avatar")
     private String avatar;
 
+    @TableField("level")
+    private String level;
+
     @TableField(exist = false)
     private String userKey;
 }
