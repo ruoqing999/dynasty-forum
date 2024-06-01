@@ -68,15 +68,14 @@ public class UserPostServiceImpl extends ServiceImpl<UserPostMapper, UserPost> i
 
     @Override
     public PageInfo<PostVO> listApprovePost(PostQO qo) {
-        UserInfoVO userInfoVO = UserContext.get();
-        Integer userId = userInfoVO.getUserId();
-        List<Integer> postIds = lambdaQuery().eq(UserPost::getUserId, userId).eq(UserPost::getType, UserPostBusinessEnum.APPROVE.getCode())
+        List<Integer> postIds = lambdaQuery().eq(UserPost::getUserId, qo.getUserId()).eq(UserPost::getType, UserPostBusinessEnum.APPROVE.getCode())
                 .list().stream().map(UserPost::getPostId).toList();
 
         if (CollectionUtils.isEmpty(postIds)) {
             return new PageInfo<>(Collections.emptyList());
         }
 
+        qo.setUserId(null);
         qo.setPostIds(postIds);
         return postService.pagePost(qo);
     }

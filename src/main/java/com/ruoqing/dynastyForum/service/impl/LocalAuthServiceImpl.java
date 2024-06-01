@@ -88,6 +88,7 @@ public class LocalAuthServiceImpl extends ServiceImpl<LocalAuthMapper, LocalAuth
         userInfoVO.setIntro(user.getIntro());
         userInfoVO.setNickName(user.getNickName());
         userInfoVO.setAvatarUrl(user.getAvatar());
+        userInfoVO.setLevel(user.getLevel());
         return userInfoVO;
     }
 }

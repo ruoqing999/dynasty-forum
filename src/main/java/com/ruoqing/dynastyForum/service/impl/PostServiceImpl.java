@@ -61,7 +61,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
         if (CollUtil.isNotEmpty(categoryIds)) {
             List<PostCategory> postCategories = postCategoryService.lambdaQuery().in(PostCategory::getCategoryId, categoryIds).list();
             if (CollUtil.isEmpty(postCategories)) {
-                return new PageInfo<>();
+                return new PageInfo<>(Collections.emptyList());
             }
             qo.setPostIds(postCategories.stream().map(PostCategory::getPostId).toList());
         }

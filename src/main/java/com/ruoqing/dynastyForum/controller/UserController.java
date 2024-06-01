@@ -55,19 +55,21 @@ public class UserController {
         return Result.ok(new PageInfo<>(Collections.singletonList(new User())));
     }
 
+    @IgnoreAuth
     @GetMapping("/getFollowCount")
     public Result<FollowCountVO> getFollowCount(Integer userId) {
         return Result.ok(new FollowCountVO());
     }
 
+    @IgnoreAuth
     @GetMapping("getUserOperateCount")
-    public Result<UserOperateCountVO> getUserOperateCount() {
-        return Result.ok(userService.getUserOperateCount());
+    public Result<UserOperateCountVO> getUserOperateCount(@RequestParam Integer userId) {
+        return Result.ok(userService.getUserOperateCount(userId));
     }
 
+    @IgnoreAuth
     @GetMapping("/pagePost")
     public Result<PageInfo<PostVO>> pagePost(PostQO qo) {
-        qo.setUserId(UserContext.get().getUserId());
         return Result.ok(postService.pagePost(qo));
     }
 
