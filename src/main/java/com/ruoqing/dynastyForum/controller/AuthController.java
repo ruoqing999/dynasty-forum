@@ -11,8 +11,11 @@ import com.ruoqing.dynastyForum.service.ILocalAuthService;
 import com.ruoqing.dynastyForum.service.IThirdOauthService;
 import com.ruoqing.dynastyForum.vo.UserInfoVO;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/auth")
@@ -35,9 +38,17 @@ public class AuthController {
 
     @IgnoreAuth
     @GetMapping("/qqLogin")
-    public Result<String> qqLogin(@RequestParam(required = false) String code, @RequestParam(required = false) String state) {
+    public void qqLogin(@RequestParam String code, @RequestParam String state, HttpServletResponse response) throws IOException {
+        String host = "https://wcby.ruoqing.club";
         UserInfoVO userInfoVO = thirdOauthService.qqLogin(code, state);
-        return Result.ok(tokenService.createToken(userInfoVO));
+        String token = tokenService.createToken(userInfoVO);
+        String script = String.format("""
+                <script>
+                window.opener.postMessage('%s', '%s')
+                window.close()
+                </script>
+                """, token, host);
+        response.getWriter().print(script);
     }
 
     @IgnoreAuth
@@ -60,7 +71,7 @@ public class AuthController {
     }
 
     @GetMapping("/info")
-    public Result<UserInfoVO> info(){
+    public Result<UserInfoVO> info() {
         return Result.ok(localAuthService.getInfo());
     }
 
