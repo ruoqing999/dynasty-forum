@@ -38,17 +38,9 @@ public class AuthController {
 
     @IgnoreAuth
     @GetMapping("/qqLogin")
-    public void qqLogin(@RequestParam String code, @RequestParam String state, HttpServletResponse response) throws IOException {
-        String host = "https://wcby.ruoqing.club";
+    public Result<String> qqLogin(@RequestParam String code, @RequestParam String state, HttpServletResponse response) throws IOException {
         UserInfoVO userInfoVO = thirdOauthService.qqLogin(code, state);
-        String token = tokenService.createToken(userInfoVO);
-        String script = String.format("""
-                <script>
-                window.opener.postMessage('%s', '%s')
-                window.close()
-                </script>
-                """, token, host);
-        response.getWriter().print(script);
+        return Result.ok(tokenService.createToken(userInfoVO));
     }
 
     @IgnoreAuth
