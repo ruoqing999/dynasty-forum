@@ -16,6 +16,7 @@ import com.ruoqing.dynastyForum.ro.PostRO;
 import com.ruoqing.dynastyForum.service.*;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ruoqing.dynastyForum.util.Assert;
+import com.ruoqing.dynastyForum.util.CommonUtil;
 import com.ruoqing.dynastyForum.util.FileUtil;
 import com.ruoqing.dynastyForum.vo.*;
 import jakarta.annotation.Resource;
@@ -54,6 +55,8 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
 
     @Resource
     private ICommentService commentService;
+
+    private static final Integer CONTENTMAX = 200;
 
     @Override
     public PageInfo<PostVO> pagePost(PostQO qo) {
@@ -113,6 +116,8 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements IP
         var postId = postRO.getPostId();
         Post post = new Post();
         BeanUtils.copyProperties(postRO, post);
+        String content = CommonUtil.html2Text(post.getPostContent());
+        post.setContent(content.length() < CONTENTMAX ? content : content.substring(0, CONTENTMAX));
 
         if (file != null) {
             Assert.isTrue(FileUtil.isFileNotTooBig(file.getBytes()), "图片过大，请上传不超过5m的图片");
