@@ -27,6 +27,9 @@ img:
   pt:
     url: https://www.imgtp.com/api/upload
     token: 8ad7492886d5f9b6e59932e62e2f14c6
+  cui:
+    url: https://picui.cn/api/v1/upload
+    token: 189|0KKSOldOLARY6oGWsArqv5RIRPJs7MVKeu98Uq5S
 
 
 

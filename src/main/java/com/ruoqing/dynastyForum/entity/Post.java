@@ -36,6 +36,9 @@ public class Post extends BaseEntity implements Serializable {
     @TableField("post_title")
     private String postTitle;
 
+    @TableField("content")
+    private String content;
+
     @TableField("raw_content")
     private String rawContent;
     /**

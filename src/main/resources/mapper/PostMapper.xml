@@ -8,7 +8,7 @@
 
     <select id="pagePost" resultType="com.ruoqing.dynastyForum.vo.PostVO">
         select dy.post_id, dy.post_title, dy.post_content, dy.post_img, dy.top, dy.user_id, dy.create_time,
-               dy.views, dy.raw_content, du.nick_name, du.avatar, du.level
+               dy.views, dy.content, dy.raw_content, du.nick_name, du.avatar, du.level
         from dy_post dy
         left join dy_user du on du.user_id = dy.user_id
         <where>
