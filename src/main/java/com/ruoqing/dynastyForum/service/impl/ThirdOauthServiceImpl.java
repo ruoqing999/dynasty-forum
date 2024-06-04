@@ -80,6 +80,7 @@ public class ThirdOauthServiceImpl extends ServiceImpl<ThirdOauthMapper, ThirdOa
         String qqUserInfo = qqApi.getUserInfo(accessToken.getAccess_token(), qqComponent.getAppId(), openId);
         log.info("qqUserInfo:{}", qqUserInfo);
         QQUserInfO userInfo = JSONUtil.toBean(qqUserInfo, QQUserInfO.class);
+        log.info("userInfo:{}", userInfo);
         Assert.isTrue(userInfo.getRet() != NORMAL_RET, "QQ-获取用户信息失败");
 
         ThirdOauth thirdOauth = lambdaQuery().eq(ThirdOauth::getOauthId, openId).one();
