@@ -14,4 +14,6 @@ public class PageQO {
     @Max(100)
     private int pageSize = 10;
 
+    private String keyword;
+
 }

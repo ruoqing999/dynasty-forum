@@ -58,3 +58,33 @@
 137  DEBUG [2024-05-24 17:37:19]  TemplateLoader.findTemplateSource("templates/controller.java_zh.ftl"): Not found
 138  DEBUG [2024-05-24 17:37:19]  TemplateLoader.findTemplateSource("templates/controller.java.ftl"): Found
 138  DEBUG [2024-05-24 17:37:19]  Loading template for "templates/controller.java.ftl"("zh_CN", UTF-8, parsed) from "jar:file:/D:/installation/apache-maven-3.8.6-bin/maven_repo/com/baomidou/mybatis-plus-generator/3.5.3.1/mybatis-plus-generator-3.5.3.1.jar!/templates/controller.java.ftl"
+0    DEBUG [2024-06-05 17:38:55]  Couldn't find template in cache for "templates/entity.java.ftl"("zh_CN", UTF-8, parsed); will try to load it.
+1    DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/entity.java_zh_CN.ftl"): Not found
+2    DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/entity.java_zh.ftl"): Not found
+3    DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/entity.java.ftl"): Found
+3    DEBUG [2024-06-05 17:38:55]  Loading template for "templates/entity.java.ftl"("zh_CN", UTF-8, parsed) from "jar:file:/D:/installation/apache-maven-3.8.6-bin/maven_repo/com/baomidou/mybatis-plus-generator/3.5.3.1/mybatis-plus-generator-3.5.3.1.jar!/templates/entity.java.ftl"
+106  DEBUG [2024-06-05 17:38:55]  Couldn't find template in cache for "templates/mapper.java.ftl"("zh_CN", UTF-8, parsed); will try to load it.
+107  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/mapper.java_zh_CN.ftl"): Not found
+107  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/mapper.java_zh.ftl"): Not found
+107  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/mapper.java.ftl"): Found
+107  DEBUG [2024-06-05 17:38:55]  Loading template for "templates/mapper.java.ftl"("zh_CN", UTF-8, parsed) from "jar:file:/D:/installation/apache-maven-3.8.6-bin/maven_repo/com/baomidou/mybatis-plus-generator/3.5.3.1/mybatis-plus-generator-3.5.3.1.jar!/templates/mapper.java.ftl"
+109  DEBUG [2024-06-05 17:38:55]  Couldn't find template in cache for "templates/mapper.xml.ftl"("zh_CN", UTF-8, parsed); will try to load it.
+110  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/mapper.xml_zh_CN.ftl"): Not found
+110  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/mapper.xml_zh.ftl"): Not found
+110  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/mapper.xml.ftl"): Found
+110  DEBUG [2024-06-05 17:38:55]  Loading template for "templates/mapper.xml.ftl"("zh_CN", UTF-8, parsed) from "jar:file:/D:/installation/apache-maven-3.8.6-bin/maven_repo/com/baomidou/mybatis-plus-generator/3.5.3.1/mybatis-plus-generator-3.5.3.1.jar!/templates/mapper.xml.ftl"
+119  DEBUG [2024-06-05 17:38:55]  Couldn't find template in cache for "templates/service.java.ftl"("zh_CN", UTF-8, parsed); will try to load it.
+119  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/service.java_zh_CN.ftl"): Not found
+119  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/service.java_zh.ftl"): Not found
+120  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/service.java.ftl"): Found
+120  DEBUG [2024-06-05 17:38:55]  Loading template for "templates/service.java.ftl"("zh_CN", UTF-8, parsed) from "jar:file:/D:/installation/apache-maven-3.8.6-bin/maven_repo/com/baomidou/mybatis-plus-generator/3.5.3.1/mybatis-plus-generator-3.5.3.1.jar!/templates/service.java.ftl"
+122  DEBUG [2024-06-05 17:38:55]  Couldn't find template in cache for "templates/serviceImpl.java.ftl"("zh_CN", UTF-8, parsed); will try to load it.
+122  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/serviceImpl.java_zh_CN.ftl"): Not found
+122  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/serviceImpl.java_zh.ftl"): Not found
+122  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/serviceImpl.java.ftl"): Found
+123  DEBUG [2024-06-05 17:38:55]  Loading template for "templates/serviceImpl.java.ftl"("zh_CN", UTF-8, parsed) from "jar:file:/D:/installation/apache-maven-3.8.6-bin/maven_repo/com/baomidou/mybatis-plus-generator/3.5.3.1/mybatis-plus-generator-3.5.3.1.jar!/templates/serviceImpl.java.ftl"
+125  DEBUG [2024-06-05 17:38:55]  Couldn't find template in cache for "templates/controller.java.ftl"("zh_CN", UTF-8, parsed); will try to load it.
+125  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/controller.java_zh_CN.ftl"): Not found
+126  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/controller.java_zh.ftl"): Not found
+126  DEBUG [2024-06-05 17:38:55]  TemplateLoader.findTemplateSource("templates/controller.java.ftl"): Found
+126  DEBUG [2024-06-05 17:38:55]  Loading template for "templates/controller.java.ftl"("zh_CN", UTF-8, parsed) from "jar:file:/D:/installation/apache-maven-3.8.6-bin/maven_repo/com/baomidou/mybatis-plus-generator/3.5.3.1/mybatis-plus-generator-3.5.3.1.jar!/templates/controller.java.ftl"

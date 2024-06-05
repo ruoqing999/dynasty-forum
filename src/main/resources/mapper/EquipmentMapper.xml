@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoqing.dynastyForum.mapper.EquipmentMapper">
+
+    <select id="pageEquipment" resultType="com.ruoqing.dynastyForum.entity.Equipment">
+        select *
+        from dy_equipment
+        <where>
+            <if test="qo.keyword != null and qo.keyword != ''">
+                and equipment_name like concat('%',#{qo.keyword},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>
