@@ -35,23 +35,21 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        //如果token有值，不管接口是否需要登录，直接存放登录用户信息
+        Method method = handlerMethod.getMethod();
+        if (method.isAnnotationPresent(IgnoreAuth.class)) {
+            return true;
+        }
+
         String token = req.getHeader("Token");
         if (!ObjectUtils.isEmpty(token)) {
             String userKey = JWTUtil.getUserKey(token);
             String userStr = redisService.get(RedisConstant.LOGIN_USER_KEY + userKey);
             if (ObjectUtils.isEmpty(userStr))
-                throw new AuthorizationException(ResultConstant.AUTHORIZATION_ERROR.getMessage());
+                throw new AuthorizationException(ResultConstant.AUTHORIZATION_EXPIRED.getMessage());
             UserInfoVO userInfoVO = JSONUtil.toBean(userStr, UserInfoVO.class);
             userInfoVO.setUserKey(userKey);
             UserContext.set(userInfoVO);
-        }
-
-        Method method = handlerMethod.getMethod();
-        if (method.isAnnotationPresent(IgnoreAuth.class)) {
-            return true;
-        }
-        if (ObjectUtils.isEmpty(token)) {
+        } else {
             throw new AuthorizationException(ResultConstant.AUTHORIZATION_ERROR.getMessage());
         }
         return true;

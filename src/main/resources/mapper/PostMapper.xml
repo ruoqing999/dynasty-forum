@@ -22,7 +22,7 @@
             <if test="qo.postTitle != null and qo.postTitle != ''">
                 and dy.post_title like concat('%', #{qo.postTitle}, '%')
             </if>
-            <if test="qo.userId != null">
+            <if test="qo.userId != null and qo.isSelf != null and qo.isSelf == 1 ">
                 and dy.user_id = #{qo.userId}
             </if>
         </where>
