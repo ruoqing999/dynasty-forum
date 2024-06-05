@@ -13,6 +13,7 @@ public enum ResultConstant {
     AUTHORIZATION_ERROR(5003, "请先登录"),
     LOGIN_ERROR(5004, "账号或密码错误"),
     REGISTER_ERROR(5005, "该账号已存在"),
+    AUTHORIZATION_EXPIRED(5006, "登录信息已过期"),
     ;
     private final Integer code;
     private final String message;

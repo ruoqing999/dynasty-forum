@@ -15,4 +15,6 @@ public class PostQO extends PageQO {
     private List<Integer> postIds;
 
     private Integer userId;
+
+    private Integer isSelf;
 }
