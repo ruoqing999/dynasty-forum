@@ -5,19 +5,12 @@ import com.ruoqing.dynastyForum.common.UserContext;
 import com.ruoqing.dynastyForum.constant.SortTypeEnum;
 import com.ruoqing.dynastyForum.constant.Whether;
 import com.ruoqing.dynastyForum.entity.Comment;
-import com.ruoqing.dynastyForum.entity.Reply;
 import com.ruoqing.dynastyForum.mapper.CommentMapper;
 import com.ruoqing.dynastyForum.ro.CommentRO;
 import com.ruoqing.dynastyForum.service.ICommentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ruoqing.dynastyForum.service.IPostService;
-import com.ruoqing.dynastyForum.service.IReplyService;
-import com.ruoqing.dynastyForum.service.IUserPostService;
 import com.ruoqing.dynastyForum.util.CommentTreeUtils;
 import com.ruoqing.dynastyForum.vo.CommentVO;
-import com.ruoqing.dynastyForum.vo.ReplyVO;
-import com.ruoqing.dynastyForum.vo.UserInfoVO;
-import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -38,9 +30,6 @@ import java.util.stream.Collectors;
  */
 @Service
 public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> implements ICommentService {
-
-    @Resource
-    private IReplyService replyService;
 
     @Override
     public void comment(CommentRO ro) {
